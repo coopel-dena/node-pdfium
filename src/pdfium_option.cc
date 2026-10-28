@@ -14,7 +14,7 @@ std::unique_ptr<PdfiumOption> V8OptionToStruct(const Napi::Value &options)
     if (options.IsObject())
     {
         auto obj = options.ToObject();
-        auto &env = options.Env();
+        auto env = options.Env();
 
         INIT_PDFIUM_OPTION(dpi);
         INIT_PDFIUM_OPTION(copies);
@@ -26,8 +26,8 @@ std::unique_ptr<PdfiumOption> V8OptionToStruct(const Napi::Value &options)
 
         if (obj.Has("pageList"))
         {
-            auto& pageList = obj.Get("pageList") ;
-            Napi::Array& arr = pageList.As<Napi::Array>();
+            auto pageList = obj.Get("pageList");
+            Napi::Array arr = pageList.As<Napi::Array>();
             for (unsigned int i = 0; i < arr.Length(); ++i)
             {
                 const Napi::Array& item = (arr.Get(i)).As<Napi::Array>();

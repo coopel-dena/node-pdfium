@@ -65,7 +65,7 @@ namespace node_pdfium
 
     void PrintPDF(const Napi::CallbackInfo &args)
     {
-        Napi::Env &env = args.Env();
+        Napi::Env env = args.Env();
         const Napi::Value &printerName = args[0];
         const Napi::Value &filePath = args[1];
         const Napi::Value &v8_options = args[2];
